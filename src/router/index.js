@@ -6,18 +6,29 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    // 主页路由
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    // 子组件1
+    children: [{
+      path: '/childOne',
+      name: 'ChildOne',
+      component: () => import('../components/ChildOne.vue')
+    },
+    // 子组件2
+    {
+      path: '/childTwo',
+      name: 'ChildTwo',
+      component: () => import('../components/ChildTwo.vue')
+    },]
   },
+  // about页面路由
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    component: () => import('../views/About.vue')
+  },
 ]
 
 const router = new VueRouter({
